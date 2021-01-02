@@ -1,0 +1,17 @@
+version: '3.7'
+
+services:
+  {{ registry_service_name }}:
+    image: registry:{{ registry_version }}
+    container_name: {{ registry_service_name }}
+    hostname: {{ registry_service_name }}
+    ports:
+      - '{{ registry_exposition_ip | default('127.0.0.1') }}:{{ registry_exposition_port | default('5000') }}:5000/tcp'
+    restart: always
+    volumes:
+      - /mnt/{{ registry_service_name }}/registry:/var/lib/registry
+
+networks:
+  default:
+    name: registry
+    driver: bridge
