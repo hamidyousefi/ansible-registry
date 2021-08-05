@@ -2,3 +2,6 @@
 docker_compose:
   - template_path: docker-compose.yml.j2
     destination_path: '/srv/{{ registry_service_name }}/docker-compose.yml'
+  - template_path: config.yml.j2
+    destination_path: '/srv/{{ registry_service_name }}/config.yml'
+    executable: no
